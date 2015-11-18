@@ -5,12 +5,12 @@ xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	<servlet>
-		<servlet-name>MtaPro</servlet-name>
-		<servlet-class>com.myorg.javacourse.MtaProServlet</servlet-class>
+		<servlet-name>Ex03</servlet-name>
+		<servlet-class>com.myorg.javacourse.Ex03Servlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>MtaPro</servlet-name>
-		<url-pattern>/mtaPro</url-pattern>
+		<servlet-name>Ex03</servlet-name>
+		<url-pattern>/ex03</url-pattern>
 	</servlet-mapping>
 	
 	
