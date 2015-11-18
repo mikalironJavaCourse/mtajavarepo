@@ -10,16 +10,10 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>MtaPro</servlet-name>
-		<url-pattern>/mtapro</url-pattern>
+		<url-pattern>/mtaPro</url-pattern>
 	</servlet-mapping>
-	<servlet>
-		<servlet-name>MathClass</servlet-name>
-		<servlet-class>com.myorg.javacourse.MathClass</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>MathClass</servlet-name>
-		<url-pattern>/math</url-pattern>
-	</servlet-mapping>
+	
+	
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
