@@ -13,6 +13,15 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<url-pattern>/ex03</url-pattern>
 	</servlet-mapping>
 	
+		<servlet>
+		<servlet-name>stock</servlet-name>
+		<servlet-class>com.myorg.javacourse.StockDetailsServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>stock</servlet-name>
+		<url-pattern>/StockDetails</url-pattern>
+	</servlet-mapping>
+	
 	
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
