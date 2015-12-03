@@ -23,15 +23,12 @@ public class StockDetailsServlet extends HttpServlet {
 		stock2.setBid((float) 5.5);
 		stock2.setdate(new Date("11/15/2014"));
 
-
-
 		Stock stock3 = new Stock();
 		stock3.setSymbol("CAAS");
 		stock3.setAsk((float) 32.2 );
 		stock3.setBid((float) 31.5);
 		stock3.setdate(new Date("11/15/2014"));
-
-			
+		
 		resp.getWriter().println(stock1.getHtmlDescription() + "<br> " + 
 		(stock2.getHtmlDescription() + "<br>" +(stock3.getHtmlDescription())));
 	}

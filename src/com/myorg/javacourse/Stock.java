@@ -4,12 +4,15 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Stock {
-	
 
+	
 	private String  symbol;
 	private float ask;
 	private float bid;
-	
+	private int recommendation;
+	private int stockQuantity;
+	private final static int BUY =0, SELL =1,REMOVE =2,HOLD =3;
+
 	SimpleDateFormat dateFormat=new SimpleDateFormat ("MM/dd/yyyy");
 	
 	public String getSymbol() {
@@ -45,6 +48,5 @@ public class Stock {
 	    			+ " <b>Date</b>: "+ dateFormat.format(getdate())+ "<br>";
 			return result1;
 	    }
-	    
-	
+
 }
