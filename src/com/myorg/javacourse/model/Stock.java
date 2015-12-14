@@ -88,7 +88,7 @@ public class Stock {
 	  public String getHtmlDescription()
 	    {
 	    	String result1 = "<b>Stock symbol</b>: " + getSymbol() + " <b>Bid</b>: " + getBid() + " <b> ask </b>: " + getAsk()  
-	    			+ " <b>Date</b>: "+ dateFormat.format(getdate())+ "<br>";
+	    			+ " <b>Date</b>: "+ dateFormat.format(getdate())+ "<b>" + " <b>Quantity</b>: "+ getStockQuantity();
 			return result1;
 	    }
 	  

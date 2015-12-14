@@ -58,6 +58,10 @@ public class PortfolioManager {
 		stock4.setStockQuantity(20);
 		stock5.setStockQuantity(30);
 		stock6.setStockQuantity(40);
+		
+		myPortfolio.buyStock(stock4,stock4.getStockQuantity());
+		myPortfolio.buyStock(stock5,stock5.getStockQuantity());
+		myPortfolio.buyStock(stock6,stock6.getStockQuantity());
 								
 		return myPortfolio;
 		
