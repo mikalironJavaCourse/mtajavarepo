@@ -14,10 +14,18 @@ public class Stock {
 	private String  symbol;
 	private float ask;
 	private float bid;
-	private int recommendation;
+	Portfolio.ALGO_RECOMMENDATION recommendation;
 	private int stockQuantity;
-	private final static int BUY =0, SELL =1,REMOVE =2,HOLD =3;
+	
+	
+	public int getStockQuantity() {
+		return stockQuantity;
+	}
 
+	public void setStockQuantity(int stockQuantity)
+	{
+		this.stockQuantity = stockQuantity;
+	}
 	SimpleDateFormat dateFormat=new SimpleDateFormat ("MM/dd/yyyy");
 	
 	/**

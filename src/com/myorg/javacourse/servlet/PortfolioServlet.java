@@ -22,26 +22,23 @@ public class PortfolioServlet extends HttpServlet{
 		
 		resp.setContentType("text/html");
 		
-		PortfolioManager portfolioManager = new PortfolioManager();
-		Portfolio portfolio = portfolioManager.getPortfolio();
+
 		
-		Portfolio portfolio2 =new Portfolio(portfolio);
+		PortfolioManager portfolioManager = new PortfolioManager();//
+		Portfolio myPortfolio = portfolioManager.getPortfolio();//
 		
-		portfolio2.setTitle("Portfolio#2");
-		portfolio.setTitle("Portfolio#1");
+		resp.getWriter().println("<h3><b>Before any change </b></h3>");
+		resp.getWriter().println(myPortfolio.getHtmlString());
 		
-		resp.getWriter().println(portfolio.getHtmlString());
-		resp.getWriter().println(portfolio2.getHtmlString());
+		myPortfolio.sellStock("AAL",-1);
 		
-		portfolio.removeIndexZero(portfolio);
+		resp.getWriter().println("<h3><b>After selling AAL stocks </b></h3> ");
+		resp.getWriter().println(myPortfolio.getHtmlString());
+			
+		myPortfolio.removeStock("CAAS");
 		
-		resp.getWriter().println(portfolio.getHtmlString());
-		resp.getWriter().println(portfolio2.getHtmlString());
+		resp.getWriter().println("<h3><b>After removing CAAS stocks </b> </h3>");
+		resp.getWriter().println(myPortfolio.getHtmlString());
 		
-		portfolio2.getStocks()[(portfolio.getPortfolioSize(portfolio2))-1].setBid(55.55f);
-		
-		resp.getWriter().println(portfolio.getHtmlString());
-		resp.getWriter().println(portfolio2.getHtmlString());
-	
 	}
 }

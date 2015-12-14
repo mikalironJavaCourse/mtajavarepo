@@ -25,11 +25,17 @@ public class PortfolioManager {
 	 */
 	
 	public Portfolio getPortfolio()
-	{	
+	{
+		Portfolio myPortfolio = new Portfolio("Exercise 7 portfolio");	
+		myPortfolio.setBalance(10000);
+		
+		
+		
 		String title =new String("Liron Mika and Mor Portfolio");
 		Portfolio portfolio = new Portfolio(title);
 		
 		Date date=(new Date("11/15/2014"));
+		Date date2=(new Date("12/15/2014"));
 		
 		Stock stock1 = new Stock(13.1f,12.4f,"PIH",date);
 		portfolio.addStock(stock1);
@@ -40,7 +46,21 @@ public class PortfolioManager {
 		Stock stock3 = new Stock(32.2f,31.5f,"CAAS",date);
 		portfolio.addStock(stock3);
 		
-		return portfolio;
+		Stock stock4 = new Stock(10.0f,8.5f,"PIH",date2);
+		myPortfolio.addStock(stock4);
+		
+		Stock stock5 = new Stock(30.0f,25.5f,"AAL",date2);
+		myPortfolio.addStock(stock5);
+		
+		Stock stock6 = new Stock(20.0f,15.5f,"CAAS",date2);
+		myPortfolio.addStock(stock6);
+		
+		stock4.setStockQuantity(20);
+		stock5.setStockQuantity(30);
+		stock6.setStockQuantity(40);
+								
+		return myPortfolio;
+		
 	}
 	
 }
