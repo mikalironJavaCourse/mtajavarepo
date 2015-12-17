@@ -10,23 +10,12 @@ import java.util.Date;
  *
  */
 public class Stock {
-
+	
+	Portfolio.ALGO_RECOMMENDATION recommendation;	
 	private String  symbol;
 	private float ask;
 	private float bid;
-	Portfolio.ALGO_RECOMMENDATION recommendation;
 	private int stockQuantity;
-	
-	
-	public int getStockQuantity() {
-		return stockQuantity;
-	}
-
-	public void setStockQuantity(int stockQuantity)
-	{
-		this.stockQuantity = stockQuantity;
-	}
-	SimpleDateFormat dateFormat=new SimpleDateFormat ("MM/dd/yyyy");
 	
 	/**
 	 * constructor of Stock
@@ -48,26 +37,71 @@ public class Stock {
 	 * copy constructor of Stock
 	 * @param stock
 	 */
+	
 	public Stock(Stock stock)
 	{
 		this(stock.getAsk() ,stock.getBid(),stock.getSymbol(),stock.getdate());
 	}
 	
+	/**
+	 * method that return information about stock
+	 * @return
+	 */
+
+	public Portfolio.ALGO_RECOMMENDATION getRecommendation() {
+		return recommendation;
+	}
+
+	public void setRecommendation(Portfolio.ALGO_RECOMMENDATION recommendation) {
+		this.recommendation = recommendation;
+	}
+
+	public SimpleDateFormat getDateFormat() {
+		return dateFormat;
+	}
+
+	public void setDateFormat(SimpleDateFormat dateFormat) {
+		this.dateFormat = dateFormat;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+	
+	public int getStockQuantity() {
+		return stockQuantity;
+	}
+
+	public void setStockQuantity(int stockQuantity)
+	{
+		this.stockQuantity = stockQuantity;
+	}
+	SimpleDateFormat dateFormat=new SimpleDateFormat ("MM/dd/yyyy");
+	
 	public String getSymbol() {
 		return symbol;
 	}
+	
 	public void setSymbol(String symbol) {
 		this.symbol = symbol;
 	}
+	
 	public float getAsk() {
 		return ask;
 	}
+	
 	public void setAsk(float ask) {
 		this.ask = ask;
 	}
+	
 	public float getBid() {
 		return bid;
 	}
+	
 	public void setBid(float bid) {
 		this.bid = bid;
 	}
@@ -78,19 +112,19 @@ public class Stock {
 	
 	public void setdate(Date date) {
 		this.date=date;
-}
-	private Date date= new Date();
+	}
 	
+	private Date date= new Date();
+		
 	/**
 	 * method that return information about stock
 	 * @return
 	 */
+	
 	  public String getHtmlDescription()
 	    {
 	    	String result1 = "<b>Stock symbol</b>: " + getSymbol() + " <b>Bid</b>: " + getBid() + " <b> ask </b>: " + getAsk()  
 	    			+ " <b>Date</b>: "+ dateFormat.format(getdate())+ "<b>" + " <b>Quantity</b>: "+ getStockQuantity();
 			return result1;
-	    }
-	  
-	  
+	    }  
 }

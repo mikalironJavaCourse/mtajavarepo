@@ -21,16 +21,13 @@ public class PortfolioManager {
 
 	/**
 	 * method of Portfolio that set variables in stock and add to portfolio 
-	 * @return
 	 */
 	
 	public Portfolio getPortfolio()
 	{
 		Portfolio myPortfolio = new Portfolio("Exercise 7 portfolio");	
 		myPortfolio.setBalance(10000);
-		
-		
-		
+			
 		String title =new String("Liron Mika and Mor Portfolio");
 		Portfolio portfolio = new Portfolio(title);
 		
@@ -54,17 +51,15 @@ public class PortfolioManager {
 		
 		Stock stock6 = new Stock(20.0f,15.5f,"CAAS",date2);
 		myPortfolio.addStock(stock6);
+			
+		myPortfolio.buyStock(stock4,20);
+		myPortfolio.buyStock(stock5,30);
+		myPortfolio.buyStock(stock6,40);
 		
-		stock4.setStockQuantity(20);
-		stock5.setStockQuantity(30);
-		stock6.setStockQuantity(40);
-		
-		myPortfolio.buyStock(stock4,stock4.getStockQuantity());
-		myPortfolio.buyStock(stock5,stock5.getStockQuantity());
-		myPortfolio.buyStock(stock6,stock6.getStockQuantity());
+		myPortfolio.sellStock("AAL",-1);
+					
+		myPortfolio.removeStock("CAAS");
 								
 		return myPortfolio;
-		
 	}
-	
 }
