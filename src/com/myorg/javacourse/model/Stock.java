@@ -1,21 +1,29 @@
 package com.myorg.javacourse.model;
 
 import java.text.SimpleDateFormat;
-
 import java.util.Date;
+
+import org.algo.model.StockInterface;
+
+import com.myorg.javacourse.model.Portfolio.ALGO_RECOMMENDATION;
 
 /**
  * an instance of stock that include variables
  * @author LironMilkaMor
  *
  */
-public class Stock {
+public class Stock implements StockInterface {
 	
 	Portfolio.ALGO_RECOMMENDATION recommendation;	
 	private String  symbol;
 	private float ask;
 	private float bid;
 	private int stockQuantity;
+	
+	
+	public Stock(){
+	}
+
 	
 	/**
 	 * constructor of Stock
@@ -41,27 +49,17 @@ public class Stock {
 	public Stock(Stock stock)
 	{
 		this(stock.getAsk() ,stock.getBid(),stock.getSymbol(),stock.getdate());
+		this.recommendation= stock.getRecommendation();
+		this.stockQuantity= stock.getStockQuantity();
 	}
 	
-	/**
-	 * method that return information about stock
-	 * @return
-	 */
 
-	public Portfolio.ALGO_RECOMMENDATION getRecommendation() {
+	public ALGO_RECOMMENDATION getRecommendation() {
 		return recommendation;
 	}
 
 	public void setRecommendation(Portfolio.ALGO_RECOMMENDATION recommendation) {
 		this.recommendation = recommendation;
-	}
-
-	public SimpleDateFormat getDateFormat() {
-		return dateFormat;
-	}
-
-	public void setDateFormat(SimpleDateFormat dateFormat) {
-		this.dateFormat = dateFormat;
 	}
 
 	public Date getDate() {
@@ -80,7 +78,6 @@ public class Stock {
 	{
 		this.stockQuantity = stockQuantity;
 	}
-	SimpleDateFormat dateFormat=new SimpleDateFormat ("MM/dd/yyyy");
 	
 	public String getSymbol() {
 		return symbol;
@@ -123,7 +120,8 @@ public class Stock {
 	
 	  public String getHtmlDescription()
 	    {
-	    	String result1 = "<b>Stock symbol</b>: " + getSymbol() + " <b>Bid</b>: " + getBid() + " <b> ask </b>: " + getAsk()  
+		  SimpleDateFormat dateFormat=new SimpleDateFormat ("MM/dd/yyyy");
+		  String result1 = "<b>Stock symbol</b>: " + getSymbol() + " <b>Bid</b>: " + getBid() + " <b> ask </b>: " + getAsk()  
 	    			+ " <b>Date</b>: "+ dateFormat.format(getdate())+ "<b>" + " <b>Quantity</b>: "+ getStockQuantity();
 			return result1;
 	    }  
