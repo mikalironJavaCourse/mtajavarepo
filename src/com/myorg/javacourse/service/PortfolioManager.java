@@ -20,6 +20,10 @@ import org.algo.service.PortfolioManagerInterface;
 import org.algo.service.ServiceManager;
 import org.algo.*;
 
+import com.myorg.javacourse.exception.BalanceException;
+import com.myorg.javacourse.exception.PortfolioFullException;
+import com.myorg.javacourse.exception.StockAlreadyExistsException;
+import com.myorg.javacourse.exception.StockNotExistException;
 import com.myorg.javacourse.model.Portfolio;
 import com.myorg.javacourse.model.Portfolio.ALGO_RECOMMENDATION;
 import com.myorg.javacourse.model.Stock;
@@ -32,9 +36,7 @@ import com.myorg.javacourse.model.Stock;
  * @author LironMikaMor
  *
  */
-
 public class PortfolioManager implements PortfolioManagerInterface{
-
 
 	private DatastoreService datastoreService =ServiceManager.datastoreService();
 	
@@ -125,7 +127,6 @@ public class PortfolioManager implements PortfolioManagerInterface{
 					}else {
 						total += value;
 					}
-
 					map.put(date, value);
 				}
 			}
@@ -148,9 +149,10 @@ public class PortfolioManager implements PortfolioManagerInterface{
 
 	/**
 	 * Add stock to portfolio 
+	 * @throws PortfolioException 
 	 */
 	@Override
-	public void addStock(String symbol) {
+	public void addStock(String symbol) throws PortfolioException {
 		Portfolio portfolio = (Portfolio) getPortfolio();
 
 		try {
@@ -168,6 +170,12 @@ public class PortfolioManager implements PortfolioManagerInterface{
 			flush(portfolio);
 		} catch (SymbolNotFoundInNasdaq e) {
 			System.out.println("Stock Not Exists: "+symbol);
+		} catch (PortfolioFullException e) {
+			throw new PortfolioException("Portfolio full");
+		} catch (StockAlreadyExistsException e) {
+			throw new PortfolioException("Stock already exist in the portfolio");
+		} catch (StockNotExistException e) {
+			throw new PortfolioException("Stock not exist");
 		}
 	}
 	
@@ -236,7 +244,6 @@ public class PortfolioManager implements PortfolioManagerInterface{
 		}
 		return new PortfolioDto(portfolio.getTitle(), portfolio.getBalance(), array);
 	}
-	
 
 	/**
 	 * fromDto - converts portfolioDto to Portfolio
@@ -266,7 +273,7 @@ public class PortfolioManager implements PortfolioManagerInterface{
 		}
 		return ret;
 	}
-	
+
 	/**
 	 * toDtoList - convert List of Stocks to list of Stock DTO
 	 * @param stocks
@@ -288,30 +295,45 @@ public class PortfolioManager implements PortfolioManagerInterface{
 	 */
 	
 	@Override
-	public void updateBalance(float value) throws PortfolioException {
-		Portfolio portfolio = (Portfolio) getPortfolio();
-		portfolio.updateBalance(value);
-		flush(portfolio);
+	public void updateBalance(float value) throws PortfolioException  {
+		
+			Portfolio portfolio = (Portfolio) getPortfolio();
+			try {
+				portfolio.updateBalance(value);
+			} catch (BalanceException e) {
+				throw new PortfolioException("Balance can not be negative");
+			}
+			flush(portfolio);
 	}
 	/**
 	 * buyStock
 	 */
-
 	@Override
 	public void buyStock(String symbol, int quantity) throws PortfolioException {
 		Portfolio portfolio = (Portfolio) getPortfolio();
 		Stock s1= (Stock) portfolio.findStock(symbol);
-		portfolio.buyStock(s1, quantity);
+		try {
+			portfolio.buyStock(s1, quantity);
+		} catch (BalanceException e) {
+			throw new PortfolioException("Not enough balance");
+		} catch (StockAlreadyExistsException e) {
+			throw new PortfolioException("Stock already exist in the portfolio");
+		} catch (StockNotExistException e) {
+			throw new PortfolioException("Stock not exist");
+		}
 		flush(portfolio);
 	}
 	/**
 	 * sellStock
 	 */
-
 	public void sellStock(String symbol, int quantity)
 			throws PortfolioException {
 		Portfolio portfolio = (Portfolio) getPortfolio();
-		portfolio.sellStock(symbol, quantity);
+		try {
+			portfolio.sellStock(symbol, quantity);
+		} catch (Exception e) {
+			throw new PortfolioException(e.getMessage());
+		}
 		flush(portfolio);
 				}
 	
@@ -322,7 +344,13 @@ public class PortfolioManager implements PortfolioManagerInterface{
 	@Override
 	public void removeStock(String symbol) throws PortfolioException {
 		Portfolio portfolio = (Portfolio) getPortfolio();
-		portfolio.removeStock(symbol);
+		try {
+			portfolio.removeStock(symbol);
+		} catch (StockNotExistException e) {
+			throw new PortfolioException("Stock Not Exist");
+		} catch (Exception e) {
+			throw new PortfolioException(e.getMessage());
+		}
 		flush(portfolio);
 	}
 }

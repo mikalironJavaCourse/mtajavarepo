@@ -20,11 +20,9 @@ public class Stock implements StockInterface {
 	private float bid;
 	private int stockQuantity;
 	
-	
 	public Stock(){
 	}
 
-	
 	/**
 	 * constructor of Stock
 	 * @param ask
@@ -53,7 +51,6 @@ public class Stock implements StockInterface {
 		this.stockQuantity= stock.getStockQuantity();
 	}
 	
-
 	public ALGO_RECOMMENDATION getRecommendation() {
 		return recommendation;
 	}
